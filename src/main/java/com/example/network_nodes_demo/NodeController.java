@@ -1,9 +1,6 @@
 package com.example.network_nodes_demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,15 +8,24 @@ import java.util.List;
 @RequestMapping("/nodes")
 public class NodeController {
 
-    private final NodeRepository repository = new NodeRepository();
+    private final NodeService service;
+
+    public NodeController(NodeService service){
+        this.service = service;
+    }
 
     @GetMapping
     public List<Node> getAllNodes(){
-        return  repository.findAll();
+        return  service.getAllNodes();
     }
 
     @GetMapping("/{id}")
     public Node getNodeById(@PathVariable Long id){
-        return repository.findById(id);
+        return service.getNodeById(id);
+    }
+
+    @PostMapping
+    public Node addNode(@RequestBody Node node){
+        return service.addNode(node);
     }
 }
