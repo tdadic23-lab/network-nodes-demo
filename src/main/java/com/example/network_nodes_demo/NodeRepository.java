@@ -31,4 +31,10 @@ public class NodeRepository {
         nodes.add(node);
         return node;
     }
+
+    public List<Node> findByVendor(String vendor){
+        return nodes.stream()
+                .filter(node -> node.getVendor().equalsIgnoreCase(vendor))
+                .toList();
+    }
 }

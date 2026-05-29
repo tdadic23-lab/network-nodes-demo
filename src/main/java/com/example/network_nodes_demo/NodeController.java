@@ -28,4 +28,9 @@ public class NodeController {
     public Node addNode(@RequestBody Node node){
         return service.addNode(node);
     }
+
+    @GetMapping("/vendor/{vendor}")
+    public List<Node> getNodesByVendor(@PathVariable String vendor){
+        return service.getNodesByVendor(vendor);
+    }
 }

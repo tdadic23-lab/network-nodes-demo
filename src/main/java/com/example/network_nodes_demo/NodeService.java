@@ -24,4 +24,9 @@ public class NodeService {
     public Node addNode(Node node){
         return repository.save(node);
     }
+
+    public List<Node> getNodesByVendor(String vendor){
+        return repository.findByVendor(vendor);
+    }
+
 }
